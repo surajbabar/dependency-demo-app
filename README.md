@@ -13,3 +13,4 @@ Demo project to show different ways of fixing vulnerabilities found in Maven bas
 
     | Vulnerability Category | Vulnerable dependency | How to Fix  |
     | ------------- |:-------------:| -----:|
+    |Transitive dependency |tomcat-embed-core-9.0.39| |
