@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SampleDataController {
 
-    private static ObjectMapper deserializer = new ObjectMapper().enableDefaultTyping();
+    private static ObjectMapper deserializer = new ObjectMapper();
     private static ObjectMapper serializer = new ObjectMapper();
     public static final Logger log = LoggerFactory.getLogger(SampleDataController.class);
 
@@ -27,11 +27,12 @@ public class SampleDataController {
     @PostMapping(path = "data")
     public ResponseEntity<String> updateData(@RequestBody String request) throws JsonProcessingException {
 
-        log.debug("post data: {}",request);
+        log.info("post data: {}",request);
         
         Data data = deserialize(request);
         if (data != null) {
-            return new ResponseEntity<String>(" successfully created",HttpStatus.CREATED);
+
+            return new ResponseEntity<String>(data.toString(),HttpStatus.CREATED);
         } else {
             return new ResponseEntity<String>("invalid content", HttpStatus.BAD_REQUEST);
         }
@@ -41,7 +42,7 @@ public class SampleDataController {
         try {
             return deserializer.readValue(request, Data.class);
         } catch (Exception e) {
-            log.warn("Unexpected exception deserializing content: ", e);
+            log.info("Unexpected exception deserializing content: ", e);
             return null;
         }
     }
