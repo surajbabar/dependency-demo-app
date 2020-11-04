@@ -11,9 +11,9 @@ Demo project to show different ways of fixing vulnerabilities found in Maven bas
 - Different kinds of vulnerabilities and ways to fix them
 
 
-    | Vulnerability Category | Vulnerable dependency | CVE Number| How to Fix  |
-    | ------------- |:-------------:| -----:| -----:|
-    |Upgrade Possible | guava-18.0.jar| CVE-2018-10237 |Upgrade to guava-29.0-jre.jar |
-    |Gaurd Clause/Code Change | jackson-databind-2.8.7.jar| CVE-2017-15095  | Disable default type conversion|
-    |Unused Vulnerable library  | hibernate-validator-5.3.5.Final.jar | CVE-2017-7536  | Exclude the depenndency |
-    |Vulnerability is not applicable as we dont use the related feature | quartz-2.0.1.jar | CVE-2019-13990 | It is ok to supress this |
+| Vulnerability Category | Vulnerable dependency | CVE Number| How to Fix  |
+| :-------------: |:-------------:| :-----:| :-----:|
+|Upgrade Possible | guava-18.0.jar| CVE-2018-10237|Upgrade to guava-29.0-jre.jar |
+|Gaurd Clause/Code Change | jackson-databind-2.8.7.jar| CVE-2017-15095  | Disable default type conversion|
+|Unused Vulnerable library  | hibernate-validator-5.3.5.Final.jar | CVE-2017-7536  | Exclude the dependency |
+|Unused Vulnerable feature | quartz-2.0.1.jar | CVE-2019-13990 | Review and supress |
