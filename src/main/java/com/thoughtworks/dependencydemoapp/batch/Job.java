@@ -1,13 +1,7 @@
 package com.thoughtworks.dependencydemoapp.batch;
 
 public class Job {
-    @Override
-    public String toString() {
-        return "Job{" +
-                "name='" + name + '\'' +
-                '}';
-    }
-
+    private String cronExpression;
     private String name;
 
     public Job() {
@@ -23,5 +17,21 @@ public class Job {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCronExpression() {
+        return cronExpression;
+    }
+
+    public void setCronExpression(String cronExpression) {
+        this.cronExpression = cronExpression;
+    }
+
+    @Override
+    public String toString() {
+        return "Job{" +
+                "cronExpression='" + cronExpression + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

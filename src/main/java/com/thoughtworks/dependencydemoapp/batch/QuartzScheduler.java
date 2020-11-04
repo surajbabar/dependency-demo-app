@@ -6,34 +6,31 @@ import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
+import java.text.ParseException;
 
-import static org.quartz.DateBuilder.evenMinuteDate;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
 
 @Component
 public class QuartzScheduler {
-    private Scheduler scheduler;
+    private final Scheduler scheduler;
 
     public QuartzScheduler(Scheduler scheduler) {
         this.scheduler = scheduler;
     }
 
-    public void scheduleBatch(Job job) throws SchedulerException, InterruptedException {
+    public void scheduleBatch(Job job) throws SchedulerException, ParseException {
         if ("HelloWorldJob".equals(job.getName())) {
             JobDetail jobDetail = newJob(HelloWorldJob.class)
                     .withIdentity("job-1", "time-based-jobs")
                     .build();
-            Date runTime = evenMinuteDate(new Date());
             Trigger trigger = newTrigger()
                     .withIdentity("trigger-1", "time-based-jobs")
-                    .startAt(runTime)
+                    .withSchedule(cronSchedule(job.getCronExpression()))
                     .build();
             scheduler.scheduleJob(jobDetail, trigger);
             scheduler.start();
-            Thread.sleep(5L * 1000L);
-            scheduler.shutdown(true);
         }
 
     }

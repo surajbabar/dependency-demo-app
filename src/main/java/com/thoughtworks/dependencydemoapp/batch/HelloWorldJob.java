@@ -1,6 +1,5 @@
 package com.thoughtworks.dependencydemoapp.batch;
 
-import com.thoughtworks.dependencydemoapp.data.SampleDataController;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
