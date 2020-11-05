@@ -38,7 +38,7 @@ public class SampleDataController {
 
     private static Data deserialize(String request) {
         try {
-            return new ObjectMapper().enableDefaultTyping().readValue(request, Data.class);
+            return new ObjectMapper().readValue(request, Data.class);
         } catch (Exception e) {
             log.info("Unexpected exception deserializing content: ", e);
             return null;
