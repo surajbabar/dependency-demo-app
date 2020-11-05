@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SampleDataController {
 
-    private static ObjectMapper deserializer = new ObjectMapper();
-    private static ObjectMapper serializer = new ObjectMapper();
     public static final Logger log = LoggerFactory.getLogger(SampleDataController.class);
 
     @GetMapping(path = "/data")
@@ -40,7 +38,7 @@ public class SampleDataController {
 
     private static Data deserialize(String request) {
         try {
-            return deserializer.readValue(request, Data.class);
+            return new ObjectMapper().enableDefaultTyping().readValue(request, Data.class);
         } catch (Exception e) {
             log.info("Unexpected exception deserializing content: ", e);
             return null;
